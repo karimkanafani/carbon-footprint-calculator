@@ -4,10 +4,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import {
   PieChart,
 } from "react-native-chart-kit";
+import { useNavigation } from "@react-navigation/native";
 
 const windowWidth = Dimensions.get('window').width;
 
 const TotalPage = ({ route }) => {
+  const navigation = useNavigation();
 
   const moveAnimation = useRef(new Animated.Value(0)).current;
 
@@ -90,6 +92,10 @@ const TotalPage = ({ route }) => {
     </>
   );
 
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <LinearGradient colors={["#5ea65e", "white"]} style={styles.container}>
       <Text style={styles.title}>
@@ -126,6 +132,10 @@ const TotalPage = ({ route }) => {
           ]}
         />
       </View>
+      {/* Back button */}
+      <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
+        <Text style={styles.backButtonText}>Go Back</Text>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };
@@ -193,6 +203,20 @@ const styles = StyleSheet.create({
   },
   breakdownText: {
     fontSize: 15,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 130,
+    left: 25,
+    backgroundColor: 'transparent',
+    padding: 7,
+    borderRadius: 3,
+    borderWidth: 1.5,
+    borderColor: 'black',
+  },
+  
+  backButtonText: {
+    color: 'black',
   },
 });
 

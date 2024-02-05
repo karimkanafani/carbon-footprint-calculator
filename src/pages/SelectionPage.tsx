@@ -227,6 +227,22 @@ const SelectionPage = ({ navigation }) => {
     );
   navigation.navigate("Total", { totalEmission, emissionBreakdown });
 };
+
+const handleResetCounts = () => {
+  // Reset the counts of all selected items
+  const resetSelectedItems = Object.keys(selectedItems).reduce(
+    (acc, itemId) => {
+      acc[itemId] = undefined;
+      return acc;
+    },
+    {}
+  );
+  setSelectedItems(resetSelectedItems);
+};
+
+const shouldShowResetButton = Object.values(selectedItems).some(
+  (selectedItem) => selectedItem !== undefined
+);
   
 
   return (
@@ -282,6 +298,13 @@ const SelectionPage = ({ navigation }) => {
           showsHorizontalScrollIndicator={false} 
           keyExtractor={(item) => item.id}
         />
+
+        {/* Reset button (conditionally rendered) */}
+        {shouldShowResetButton && (
+          <TouchableOpacity style={styles.resetButton} onPress={handleResetCounts}>
+            <Text style={styles.resetButtonText}>Reset</Text>
+          </TouchableOpacity>
+        )}
 
         <TouchableOpacity style={styles.button} onPress={handleNext}>
           <Text style={styles.buttonText}>Calculate</Text>
@@ -368,6 +391,21 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     elevation: 2,
+  },
+  resetButton: {
+    position: "absolute",
+    top: 175,  // Adjust the top position as needed
+    right: 20,
+    width: 45,  // Adjust the width as needed
+    height: 20,  // Adjust the height as needed
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+  resetButtonText: {
+    color: "black",
   },
 });
 

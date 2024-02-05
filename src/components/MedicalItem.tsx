@@ -57,11 +57,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: "black",
     fontWeight: "bold",
+    marginRight: 10,
+    marginLeft: 10,
   },
   countContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 10, 
   },
   button: {
     color: "black",
@@ -69,6 +72,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 20,
     fontWeight: "bold",
+    overflow: "hidden",
+    backgroundColor: "#74ca74", 
+    borderRadius: 8,
   },
   imageStyle: {
     width: 80,
