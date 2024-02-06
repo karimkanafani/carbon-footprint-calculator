@@ -9,10 +9,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image, Modal,
-    Dimensions
+  Dimensions
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import MedicalItem from "../components/MedicalItem";
+import MultiSizeMedicalItem from "../components/MultiSizeMedicalItem";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const { width, height } = Dimensions.get('window');
@@ -28,12 +29,28 @@ type ItemData = {
   disposal_emissions: any;
 };
 
+type MultiSizeItem = {
+  id: string;
+  picture: Image;
+  title: string;
+  items: Omit<ItemData, "picture">[];
+}
+
 type SelectedItem = {
   count: number;
   item: ItemData;
 };
 
-const DATA: ItemData[] = [
+
+const isMultiSizeItem = (item: ItemData | MultiSizeItem): item is MultiSizeItem => {
+  return (
+    typeof item === 'object' &&
+    item !== null &&
+    'items' in item
+  );
+}
+
+const DATA: (ItemData | MultiSizeItem)[] = [
   {
     id: "1",
     picture: require("../assets/pictures/surgical_gloves.png"),
@@ -57,95 +74,96 @@ const DATA: ItemData[] = [
   {
     id: "3",
     picture: require("../assets/pictures/syringe.png"),
-    title: "2mL Syringe",
-    total_emission: 0.5898,
-    transportation_emissions: 0.178,
-    production_emissions: 0.0005*2*8.27,
-    packaging_emissions: 0.0005*2*1.58,
-    disposal_emissions: 0.0005*2*1.139,
+    title: "Syringe",
+    items: [
+      {
+        id: "3-1",
+        title: "2mL Syringe",
+        total_emission: 0.5898,
+        transportation_emissions: 0.178,
+        production_emissions: 0.0005 * 2 * 8.27,
+        packaging_emissions: 0.0005 * 2 * 1.58,
+        disposal_emissions: 0.0005 * 2 * 1.139,
+      },
+      {
+        id: "3-2",
+        title: "5mL Syringe",
+        total_emission: 0.6475,
+        transportation_emissions: 0.178,
+        production_emissions: 0.0005 * 5 * 8.27,
+        packaging_emissions: 0.0005 * 5 * 1.58,
+        disposal_emissions: 0.0005 * 5 * 1.139,
+      },
+      {
+        id: "3-3",
+        title: "10mL Syringe",
+        total_emission: 0.7834,
+        transportation_emissions: 0.178,
+        production_emissions: 0.0005 * 10 * 8.27,
+        packaging_emissions: 0.0005 * 10 * 1.58,
+        disposal_emissions: 0.0005 * 10 * 1.139,
+      },
+      {
+        id: "3-4",
+        title: "20mL Syringe",
+        total_emission: 0.9,
+        transportation_emissions: 0.178,
+        production_emissions: 0.0005 * 20 * 8.27,
+        packaging_emissions: 0.0005 * 20 * 1.58,
+        disposal_emissions: 0.075,
+      },
+      {
+        id: "3-5",
+        title: "30mL Syringe",
+        total_emission: 1.1,
+        transportation_emissions: 0.178,
+        production_emissions: 0.0005 * 30 * 8.27,
+        packaging_emissions: 0.0005 * 30 * 1.58,
+        disposal_emissions: 0.0005 * 30 * 1.139,
+      },
+      {
+        id: "3-6",
+        title: "50mL Syringe",
+        total_emission: 1.4,
+        transportation_emissions: 0.178,
+        production_emissions: 0.0005 * 50 * 8.27,
+        packaging_emissions: 0.0005 * 50 * 1.58,
+        disposal_emissions: 0.0005 * 50 * 1.139,
+      },
+    ]
   },
   {
     id: "4",
-    picture: require("../assets/pictures/syringe.png"),
-    title: "5mL Syringe",
-    total_emission: 0.6475,
-    transportation_emissions: 0.178, 
-    production_emissions: 0.0005*5*8.27,
-    packaging_emissions: 0.0005*5*1.58,
-    disposal_emissions: 0.0005*5*1.139,
-  },
-  {
-    id: "5",
-    picture: require("../assets/pictures/syringe.png"),
-    title: "10mL Syringe",
-    total_emission: 0.7834,
-    transportation_emissions: 0.178, 
-    production_emissions: 0.0005*10*8.27,
-    packaging_emissions: 0.0005*10*1.58,
-    disposal_emissions: 0.0005*10*1.139,
-  },
-  {
-    id: "6",
-    picture: require("../assets/pictures/syringe.png"),
-    title: "20mL Syringe",
-    total_emission: 0.9,
-    transportation_emissions: 0.178, 
-    production_emissions: 0.0005*20*8.27,
-    packaging_emissions: 0.0005*20*1.58,
-    disposal_emissions: 0.075,
-  },
-  {
-    id: "7",
-    picture: require("../assets/pictures/syringe.png"),
-    title: "30mL Syringe",
-    total_emission: 1.1,
-    transportation_emissions: 0.178, 
-    production_emissions: 0.0005*30*8.27,
-    packaging_emissions: 0.0005*30*1.58,
-    disposal_emissions: 0.0005*30*1.139,
-  },
-  {
-    id: "8",
-    picture: require("../assets/pictures/syringe.png"),
-    title: "50mL Syringe",
-    total_emission: 1.4,
-    transportation_emissions: 0.178, 
-    production_emissions: 0.0005*50*8.27,
-    packaging_emissions: 0.0005*50*1.58,
-    disposal_emissions: 0.0005*50*1.139,
-  },
-  {
-    id: "9",
     picture: require("../assets/pictures/n95-with-valve.png"),
     title: "N95 Mask (with valve)",
     total_emission: 3.822,
-    transportation_emissions: 0.18, 
+    transportation_emissions: 0.18,
     production_emissions: 1.525,
     packaging_emissions: 0.2688,
     disposal_emissions: 0.075,
   },
   {
-    id: "10",
+    id: "5",
     picture: require("../assets/pictures/n95-no-valve.png"),
     title: "N95 Mask (no valve)",
     total_emission: 1.904,
-    transportation_emissions: 0.18, 
+    transportation_emissions: 0.18,
     production_emissions: 0.96,
     packaging_emissions: 0.007,
     disposal_emissions: 0.005,
   },
   {
-    id: "11",
+    id: "6",
     picture: require("../assets/pictures/cotton-gauze.png"),
     title: "Cotton Gauze (Box of 10x10)",
     total_emission: 1.904,
-    transportation_emissions: 1.07, 
+    transportation_emissions: 1.07,
     production_emissions: 0.0367,
     packaging_emissions: 0.65,
     disposal_emissions: 2.0,
   },
   {
-    id: "12",
+    id: "7",
     picture: require("../assets/pictures/iv-tubing.png"),
     title: "IV Tubing",
     total_emission: 1.904, // temp data
@@ -155,14 +173,38 @@ const DATA: ItemData[] = [
     disposal_emissions: 2.0, // temp data
   },
   {
-    id: "13",
+    id: "8",
     picture: require("../assets/pictures/hypodermic-needle.png"),
     title: "Hypodermic Needle",
-    total_emission: 1.904, // temp data
-    transportation_emissions: 1.07, // temp data
-    production_emissions: 0.0367, // temp data
-    packaging_emissions: 0.65, // temp data
-    disposal_emissions: 2.0, // temp data
+    items: [
+      {
+        id: "8-1",
+        title: "Hypodermic Needle 16G",
+        total_emission: 1.904, // temp data
+        transportation_emissions: 1.07, // temp data
+        production_emissions: 0.0367, // temp data
+        packaging_emissions: 0.65, // temp data
+        disposal_emissions: 2.0, // temp data
+      },
+      {
+        id: "8-2",
+        title: "Hypodermic Needle 18G",
+        total_emission: 1.904, // temp data
+        transportation_emissions: 1.07, // temp data
+        production_emissions: 0.0367, // temp data
+        packaging_emissions: 0.65, // temp data
+        disposal_emissions: 2.0, // temp data
+      },
+      {
+        id: "8-3",
+        title: "Hypodermic Needle 21G",
+        total_emission: 1.904, // temp data
+        transportation_emissions: 1.07, // temp data
+        production_emissions: 0.0367, // temp data
+        packaging_emissions: 0.65, // temp data
+        disposal_emissions: 2.0, // temp data
+      }
+    ]
   }
 ];
 
@@ -180,10 +222,10 @@ const SelectionPage = ({ navigation }) => {
 
   const handleSelect = (id, change) => {
     if (!selectedItems[id]) {
-      setSelectedItems({
-        ...selectedItems,
+      setSelectedItems((prevSelectedItems) => ({
+        ...prevSelectedItems,
         [id]: { count: 1, item: DATA.find((item) => item.id === id) },
-      });
+      }));
     } else if (selectedItems[id].count + change < 1) {
       setSelectedItems({ ...selectedItems, [id]: undefined });
     } else {
@@ -203,71 +245,58 @@ const SelectionPage = ({ navigation }) => {
         }
         return total;
       }, 0);
-  
+
     totalEmission = parseFloat(totalEmission.toFixed(3));
-  
+
     const emissionBreakdown = Object.values(selectedItems)
-    .filter((selectedItem) => selectedItem !== undefined)
-    .reduce(
-      (totals, selectedItem) => {
-        if (selectedItem) {
-          totals.transportation_emissions += selectedItem.count * selectedItem.item.transportation_emissions;
-          totals.production_emissions += selectedItem.count * selectedItem.item.production_emissions;
-          totals.packaging_emissions += selectedItem.count * selectedItem.item.packaging_emissions;
-          totals.disposal_emissions += selectedItem.count * selectedItem.item.disposal_emissions;
+      .filter((selectedItem) => selectedItem !== undefined)
+      .reduce(
+        (totals, selectedItem) => {
+          if (selectedItem) {
+            totals.transportation_emissions += selectedItem.count * selectedItem.item.transportation_emissions;
+            totals.production_emissions += selectedItem.count * selectedItem.item.production_emissions;
+            totals.packaging_emissions += selectedItem.count * selectedItem.item.packaging_emissions;
+            totals.disposal_emissions += selectedItem.count * selectedItem.item.disposal_emissions;
+          }
+          return totals;
+        },
+        {
+          transportation_emissions: 0,
+          production_emissions: 0,
+          packaging_emissions: 0,
+          disposal_emissions: 0,
         }
-        return totals;
-      },
-      {
-        transportation_emissions: 0,
-        production_emissions: 0,
-        packaging_emissions: 0,
-        disposal_emissions: 0,
-      }
-    );
-  navigation.navigate("Total", { totalEmission, emissionBreakdown });
-};
+      );
+    navigation.navigate("Total", { totalEmission, emissionBreakdown });
+  };
 
-const handleResetCounts = () => {
-  // Reset the counts of all selected items
-  const resetSelectedItems = Object.keys(selectedItems).reduce(
-    (acc, itemId) => {
-      acc[itemId] = undefined;
-      return acc;
-    },
-    {}
+  const shouldShowResetButton = Object.values(selectedItems).some(
+    (selectedItem) => selectedItem !== undefined
   );
-  setSelectedItems(resetSelectedItems);
-};
-
-const shouldShowResetButton = Object.values(selectedItems).some(
-  (selectedItem) => selectedItem !== undefined
-);
-  
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <LinearGradient colors={["lightblue", "white"]} style={styles.container}>
         <TouchableOpacity
-            onPress={() => setInfoModalVisible(true)}
-            style={styles.infoButton}
+          onPress={() => setInfoModalVisible(true)}
+          style={styles.infoButton}
         >
-          <Ionicons name="information-circle-outline" size={25} style={styles.infoButton}/>
+          <Ionicons name="information-circle-outline" size={25} style={styles.infoButton} />
         </TouchableOpacity>
 
         <Modal
-            animationType="slide"
-            transparent={true}
-            visible={infoModalVisible}
-            onRequestClose={() => setInfoModalVisible(false)}
+          animationType="slide"
+          transparent={true}
+          visible={infoModalVisible}
+          onRequestClose={() => setInfoModalVisible(false)}
         >
           <View style={styles.fullScreenCentered}>
             <View style={styles.modalView}>
               {/* Modal Content */}
-              <Text style={{fontSize: 18, marginBottom: 10}}>Please remember to change your mask every 2 hours.</Text>
+              <Text style={{ fontSize: 18, marginBottom: 10 }}>Please remember to change your mask every 2 hours.</Text>
               <TouchableOpacity
-                  onPress={() => setInfoModalVisible(false)}
-                  style={styles.closeButton}
+                onPress={() => setInfoModalVisible(false)}
+                style={styles.closeButton}
               >
                 <Text>Close</Text>
               </TouchableOpacity>
@@ -286,22 +315,29 @@ const shouldShowResetButton = Object.values(selectedItems).some(
           data={filteredData}
           numColumns={2}
           renderItem={({ item }) => (
-            <MedicalItem
-              title={item.title}
-              onSelect={(change) => handleSelect(item.id, change)}
-              isSelected={!!selectedItems[item.id]}
-              count={selectedItems[item.id]?.count}
-              picture={item.picture}
-            />
+            (isMultiSizeItem(item)) ?
+              <MultiSizeMedicalItem
+                title={item.title}
+                picture={item.picture}
+                items={item.items}
+                selectedItems={selectedItems}
+                setSelectedItems={setSelectedItems}
+              /> :
+              <MedicalItem
+                title={item.title}
+                onSelect={(change) => handleSelect(item.id, change)}
+                isSelected={!!selectedItems[item.id]}
+                count={selectedItems[item.id]?.count}
+                picture={item.picture}
+              />
           )}
           contentContainerStyle={styles.flatListContent}
-          showsHorizontalScrollIndicator={false} 
+          showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
         />
 
-        {/* Reset button (conditionally rendered) */}
         {shouldShowResetButton && (
-          <TouchableOpacity style={styles.resetButton} onPress={handleResetCounts}>
+          <TouchableOpacity style={styles.resetButton} onPress={() => setSelectedItems({})}>
             <Text style={styles.resetButtonText}>Reset</Text>
           </TouchableOpacity>
         )}
@@ -368,7 +404,6 @@ const styles = StyleSheet.create({
     position: 'absolute', // Ensures it overlays over everything
     top: 0,
     left: 0,
-
   },
   modalView: {
     backgroundColor: "white",
