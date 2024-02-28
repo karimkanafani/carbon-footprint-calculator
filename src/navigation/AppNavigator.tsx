@@ -4,6 +4,7 @@ import SelectionPage from "../pages/SelectionPage";
 import TotalPage from "../pages/TotalPage";
 import NavBar from "../containers/NavBar";
 import AIPage from "../pages/AIPage";
+import InfoPage from "../pages/InfoPage";
 
 const Stack = createStackNavigator();
 
@@ -35,8 +36,8 @@ const AppNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-          name="AI"
-          component={AIPage}
+          name="Info"
+          component={InfoPage}
           options={{ headerShown: false }}
       />
     </Stack.Navigator>

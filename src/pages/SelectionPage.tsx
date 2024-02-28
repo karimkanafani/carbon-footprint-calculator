@@ -42,7 +42,7 @@ type SelectedItem = {
 };
 
 
-const isMultiSizeItem = (item: ItemData | MultiSizeItem): item is MultiSizeItem => {
+export const isMultiSizeItem = (item: ItemData | MultiSizeItem): item is MultiSizeItem => {
   return (
     typeof item === 'object' &&
     item !== null &&
@@ -50,7 +50,7 @@ const isMultiSizeItem = (item: ItemData | MultiSizeItem): item is MultiSizeItem 
   );
 }
 
-const DATA: (ItemData | MultiSizeItem)[] = [
+export const DATA: (ItemData | MultiSizeItem)[] = [
   {
     id: "1",
     picture: require("../assets/pictures/surgical_gloves.png"),
@@ -180,29 +180,29 @@ const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "8-1",
         title: "Hypodermic Needle 16G",
-        total_emission: 1.904, // temp data
-        transportation_emissions: 1.07, // temp data
-        production_emissions: 0.0367, // temp data
-        packaging_emissions: 0.65, // temp data
-        disposal_emissions: 2.0, // temp data
+        total_emission: 0.205,
+        transportation_emissions: 0.178,
+        production_emissions: 0.00127,
+        packaging_emissions: 0.0005 * 32.5 * 1.58,
+        disposal_emissions: 0.000505,
       },
       {
         id: "8-2",
-        title: "Hypodermic Needle 18G",
-        total_emission: 1.904, // temp data
-        transportation_emissions: 1.07, // temp data
-        production_emissions: 0.0367, // temp data
-        packaging_emissions: 0.65, // temp data
-        disposal_emissions: 2.0, // temp data
+        title: "Hypodermic Needle 21G",
+        total_emission: 0.203, // temp data
+        transportation_emissions: 0.178,
+        production_emissions: 0.000309,
+        packaging_emissions:  0.0005 * 31.5 * 1.58,
+        disposal_emissions:  0.000124,
       },
       {
         id: "8-3",
-        title: "Hypodermic Needle 21G",
-        total_emission: 1.904, // temp data
-        transportation_emissions: 1.07, // temp data
-        production_emissions: 0.0367, // temp data
-        packaging_emissions: 0.65, // temp data
-        disposal_emissions: 2.0, // temp data
+        title: "Hypodermic Needle 23G",
+        total_emission: 0.2, // temp data
+        transportation_emissions: 0.178,
+        production_emissions: 0.000149,
+        packaging_emissions:  0.0005 * 27.5 * 1.58,
+        disposal_emissions: 0.000119,
       }
     ]
   }
