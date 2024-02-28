@@ -44,7 +44,7 @@ const InfoPage = () => {
   return (
       <LinearGradient colors={["lightblue", "white"]} style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.title}>List of Items</Text>
+          <Text style={styles.title}>Daily Carbon Emissions Tracker for Medical Devices</Text>
           <FlatList
               data={DATA}
               renderItem={renderItem}
