@@ -17,3 +17,8 @@ export type MultiSizeItem = {
     title: string;
     items: Omit<ItemData, "picture">[];
 };
+
+export type SelectedItem = {
+    count: number;
+    item: ItemData;
+  };

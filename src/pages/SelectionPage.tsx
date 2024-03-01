@@ -15,14 +15,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import MedicalItem from "../components/MedicalItem";
 import MultiSizeMedicalItem from "../components/MultiSizeMedicalItem";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ItemData, MultiSizeItem } from "../types/ItemTypes";
+import { ItemData, MultiSizeItem, SelectedItem } from "../types/ItemTypes";
 
 const { width, height } = Dimensions.get('window');
-
-type SelectedItem = {
-  count: number;
-  item: ItemData;
-};
 
 export const isMultiSizeItem = (item: ItemData | MultiSizeItem): item is MultiSizeItem => {
   return (
@@ -249,7 +244,7 @@ const SelectionPage = ({ navigation }) => {
           disposal_emissions: 0,
         }
       );
-    navigation.navigate("Total", { totalEmission, emissionBreakdown });
+    navigation.navigate("Total", { selectedItems });
   };
 
   const shouldShowResetButton = Object.values(selectedItems).some(
