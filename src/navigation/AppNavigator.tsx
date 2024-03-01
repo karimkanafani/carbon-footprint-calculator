@@ -3,8 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SelectionPage from "../pages/SelectionPage";
 import TotalPage from "../pages/TotalPage";
 import NavBar from "../containers/NavBar";
-import AIPage from "../pages/AIPage";
 import InfoPage from "../pages/InfoPage";
+import HistoryPage from "../pages/HistoryPage";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +38,11 @@ const AppNavigator = () => {
       <Stack.Screen
           name="Info"
           component={InfoPage}
+          options={{ headerShown: false }}
+      />
+      <Stack.Screen
+          name="History"
+          component={HistoryPage}
           options={{ headerShown: false }}
       />
     </Stack.Navigator>

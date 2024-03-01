@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, Image, Modal, Dimensions } from "react-native";
-import { set } from 'react-native-reanimated';
-
-type ItemData = {
-    id: string;
-    picture: Image;
-    title: string;
-    total_emission: number;
-    transportation_emissions: any;
-    production_emissions: any;
-    packaging_emissions: any;
-    disposal_emissions: any;
-};
+import { ItemData } from "../types/ItemTypes";
 
 type SelectedItem = {
     count: number;
