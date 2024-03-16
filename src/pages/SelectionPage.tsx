@@ -37,15 +37,25 @@ const DATA: ItemData[] = [
   {
     id: "1",
     picture: require("../assets/pictures/surgical_gloves.png"),
-    title: "Latex Surgical Gloves (Pair)",
-    total_emission: 1.2,
-    transportation_emissions: 1.07,
-    production_emissions: 0.048,
-    packaging_emissions: 0.03,
+    title: "Non-Sterile Surgical Gloves (Pair)",
+    total_emission: 0.82,
+    transportation_emissions: 0.735,
+    production_emissions: 0.04,
+    packaging_emissions: 0.0002853,
     disposal_emissions: 0.042,
   },
   {
     id: "2",
+    picture: require("../assets/pictures/sterile_gloves.png"),
+    title: "Sterile Surgical Gloves (Pair)",
+    total_emission: 1.06,
+    transportation_emissions: 0.735,
+    production_emissions: 0.1,
+    packaging_emissions: 0.18,
+    disposal_emissions: 0.042,
+  },
+  {
+    id: "3",
     picture: require("../assets/pictures/surgical_mask.png"),
     title: "Surgical Mask",
     total_emission: 2.249,
@@ -55,7 +65,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.005,
   },
   {
-    id: "3",
+    id: "4",
     picture: require("../assets/pictures/syringe.png"),
     title: "2mL Syringe",
     total_emission: 0.5898,
@@ -65,7 +75,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.0005*2*1.139,
   },
   {
-    id: "4",
+    id: "5",
     picture: require("../assets/pictures/syringe.png"),
     title: "5mL Syringe",
     total_emission: 0.6475,
@@ -75,7 +85,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.0005*5*1.139,
   },
   {
-    id: "5",
+    id: "6",
     picture: require("../assets/pictures/syringe.png"),
     title: "10mL Syringe",
     total_emission: 0.7834,
@@ -85,7 +95,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.0005*10*1.139,
   },
   {
-    id: "6",
+    id: "7",
     picture: require("../assets/pictures/syringe.png"),
     title: "20mL Syringe",
     total_emission: 0.9,
@@ -95,7 +105,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.075,
   },
   {
-    id: "7",
+    id: "8",
     picture: require("../assets/pictures/syringe.png"),
     title: "30mL Syringe",
     total_emission: 1.1,
@@ -105,7 +115,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.0005*30*1.139,
   },
   {
-    id: "8",
+    id: "9",
     picture: require("../assets/pictures/syringe.png"),
     title: "50mL Syringe",
     total_emission: 1.4,
@@ -115,7 +125,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.0005*50*1.139,
   },
   {
-    id: "9",
+    id: "10",
     picture: require("../assets/pictures/n95-with-valve.png"),
     title: "N95 Mask (with valve)",
     total_emission: 3.822,
@@ -125,7 +135,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.075,
   },
   {
-    id: "10",
+    id: "11",
     picture: require("../assets/pictures/n95-no-valve.png"),
     title: "N95 Mask (no valve)",
     total_emission: 1.904,
@@ -135,7 +145,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 0.005,
   },
   {
-    id: "11",
+    id: "12",
     picture: require("../assets/pictures/cotton-gauze.png"),
     title: "Cotton Gauze (Box of 10x10)",
     total_emission: 1.904,
@@ -145,7 +155,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 2.0,
   },
   {
-    id: "12",
+    id: "13",
     picture: require("../assets/pictures/iv-tubing.png"),
     title: "IV Tubing",
     total_emission: 1.904, // temp data
@@ -155,7 +165,7 @@ const DATA: ItemData[] = [
     disposal_emissions: 2.0, // temp data
   },
   {
-    id: "13",
+    id: "14",
     picture: require("../assets/pictures/hypodermic-needle.png"),
     title: "Hypodermic Needle",
     total_emission: 1.904, // temp data
