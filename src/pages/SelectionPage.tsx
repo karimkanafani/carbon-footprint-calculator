@@ -31,22 +31,22 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
   {
     id: "1",
     picture: require("../assets/pictures/surgical_gloves.png"),
-    title: "Latex Surgical Gloves (Pair)",
-    total_emission: 1.2,
-    transportation_emissions: 1.07,
-    production_emissions: 0.048,
-    packaging_emissions: 0.03,
+    title: "Non-Sterile Surgical Gloves (Pair)",
+    total_emission: 0.82,
+    transportation_emissions: 0.735,
+    production_emissions: 0.04,
+    packaging_emissions: 0.0002853,
     disposal_emissions: 0.042,
   },
   {
     id: "2",
-    picture: require("../assets/pictures/surgical_mask.png"),
-    title: "Surgical Mask",
-    total_emission: 2.249,
-    transportation_emissions: 0.16,
-    production_emissions: 2.15,
-    packaging_emissions: 0.041,
-    disposal_emissions: 0.005,
+    picture: require("../assets/pictures/sterile_gloves.png"),
+    title: "Sterile Surgical Gloves (Pair)",
+    total_emission: 1.06,
+    transportation_emissions: 0.735,
+    production_emissions: 0.1,
+    packaging_emissions: 0.18,
+    disposal_emissions: 0.042,
   },
   {
     id: "3",
@@ -143,11 +143,11 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "7",
     picture: require("../assets/pictures/iv-tubing.png"),
     title: "IV Tubing",
-    total_emission: 1.904, // temp data
-    transportation_emissions: 1.07, // temp data
-    production_emissions: 0.0367, // temp data
-    packaging_emissions: 0.65, // temp data
-    disposal_emissions: 2.0, // temp data
+    total_emission: 0.28077, 
+    transportation_emissions: 0.2132,
+    production_emissions: 1.5 * 30.33 * 0.001, // 0.045495
+    packaging_emissions: 6 * 2.4 * 0.001, //0.0144
+    disposal_emissions: 0.03033 * 0.253, //0.00767349
   },
   {
     id: "8",
@@ -182,6 +182,16 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
         disposal_emissions: 0.000119,
       }
     ]
+  },
+  {
+    id: "9",
+    picture: require("../assets/pictures/surgical_mask.png"),
+    title: "Surgical Mask",
+    total_emission: 2.249,
+    transportation_emissions: 0.16,
+    production_emissions: 2.15,
+    packaging_emissions: 0.041,
+    disposal_emissions: 0.005,
   }
 ];
 
