@@ -143,11 +143,11 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "7",
     picture: require("../assets/pictures/iv-tubing.png"),
     title: "IV Tubing",
-    total_emission: 1.904, // temp data
-    transportation_emissions: 1.07, // temp data
-    production_emissions: 0.0367, // temp data
-    packaging_emissions: 0.65, // temp data
-    disposal_emissions: 2.0, // temp data
+    total_emission: 0.28077, 
+    transportation_emissions: 0.2132,
+    production_emissions: 1.5 * 30.33 * 0.001, // 0.045495
+    packaging_emissions: 6 * 2.4 * 0.001, //0.0144
+    disposal_emissions: 0.03033 * 0.253, //0.00767349
   },
   {
     id: "8",
