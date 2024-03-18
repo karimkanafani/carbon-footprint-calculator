@@ -32,7 +32,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "1",
     picture: require("../assets/pictures/surgical_gloves.png"),
     title: "Non-Sterile Surgical Gloves (Pair)",
-    total_emission: 0.82,
+    total_emission: 0.735 + 0.04 + 0.0002853 + 0.042,
     transportation_emissions: 0.735,
     production_emissions: 0.04,
     packaging_emissions: 0.0002853,
@@ -42,7 +42,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "2",
     picture: require("../assets/pictures/sterile_gloves.png"),
     title: "Sterile Surgical Gloves (Pair)",
-    total_emission: 1.06,
+    total_emission: 0.735 + 0.1 + 0.18+ 0.042,
     transportation_emissions: 0.735,
     production_emissions: 0.1,
     packaging_emissions: 0.18,
@@ -56,7 +56,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "3-1",
         title: "2mL Syringe",
-        total_emission: 0.5898,
+        total_emission: 0.178 + 0.0005 * 2 * 8.27 + 0.0005 * 2 * 1.58 + 0.0005 * 2 * 1.139,
         transportation_emissions: 0.178,
         production_emissions: 0.0005 * 2 * 8.27,
         packaging_emissions: 0.0005 * 2 * 1.58,
@@ -65,7 +65,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "3-2",
         title: "5mL Syringe",
-        total_emission: 0.6475,
+        total_emission: 0.178 + 0.0005 * 5 * 8.27 + 0.0005 * 5 * 1.58 + 0.0005 * 5 * 1.139,
         transportation_emissions: 0.178,
         production_emissions: 0.0005 * 5 * 8.27,
         packaging_emissions: 0.0005 * 5 * 1.58,
@@ -74,7 +74,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "3-3",
         title: "10mL Syringe",
-        total_emission: 0.7834,
+        total_emission: 0.178 + 0.0005 * 10 * 8.27 + 0.0005 * 10 * 1.58 + 0.0005 * 10 * 1.139,
         transportation_emissions: 0.178,
         production_emissions: 0.0005 * 10 * 8.27,
         packaging_emissions: 0.0005 * 10 * 1.58,
@@ -83,7 +83,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "3-4",
         title: "20mL Syringe",
-        total_emission: 0.9,
+        total_emission: 0.178 + 0.0005 * 20 * 8.27 + 0.0005 * 20 * 1.58 + 0.075,
         transportation_emissions: 0.178,
         production_emissions: 0.0005 * 20 * 8.27,
         packaging_emissions: 0.0005 * 20 * 1.58,
@@ -92,7 +92,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "3-5",
         title: "30mL Syringe",
-        total_emission: 1.1,
+        total_emission: 0.178 + 0.0005 * 30 * 8.27 + 0.0005 * 30 * 1.58 + 0.0005 * 30 * 1.139,
         transportation_emissions: 0.178,
         production_emissions: 0.0005 * 30 * 8.27,
         packaging_emissions: 0.0005 * 30 * 1.58,
@@ -101,7 +101,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "3-6",
         title: "50mL Syringe",
-        total_emission: 1.4,
+        total_emission: 0.178 + 0.0005 * 50 * 8.27 + 0.0005 * 50 * 1.58 + 0.0005 * 50 * 1.139,
         transportation_emissions: 0.178,
         production_emissions: 0.0005 * 50 * 8.27,
         packaging_emissions: 0.0005 * 50 * 1.58,
@@ -113,7 +113,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "4",
     picture: require("../assets/pictures/n95-with-valve.png"),
     title: "N95 Mask (with valve)",
-    total_emission: 3.822,
+    total_emission: 0.18 + 1.525 + 0.2688 + 0.075,
     transportation_emissions: 0.18,
     production_emissions: 1.525,
     packaging_emissions: 0.2688,
@@ -123,7 +123,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "5",
     picture: require("../assets/pictures/n95-no-valve.png"),
     title: "N95 Mask (no valve)",
-    total_emission: 1.904,
+    total_emission: 0.18 + 0.96 + 0.007+ 0.005,
     transportation_emissions: 0.18,
     production_emissions: 0.96,
     packaging_emissions: 0.007,
@@ -133,7 +133,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "6",
     picture: require("../assets/pictures/cotton-gauze.png"),
     title: "Cotton Gauze (Box of 10x10)",
-    total_emission: 1.904,
+    total_emission: 1.07 + 0.0367 + 0.65 + 2.0,
     transportation_emissions: 1.07,
     production_emissions: 0.0367,
     packaging_emissions: 0.65,
@@ -143,7 +143,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "7",
     picture: require("../assets/pictures/iv-tubing.png"),
     title: "IV Tubing",
-    total_emission: 0.28077, 
+    total_emission: 0.2132 + 1.5 * 30.33 * 0.001 + 6 * 2.4 * 0.001 + 0.03033 * 0.253,
     transportation_emissions: 0.2132,
     production_emissions: 1.5 * 30.33 * 0.001, // 0.045495
     packaging_emissions: 6 * 2.4 * 0.001, //0.0144
@@ -157,7 +157,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "8-1",
         title: "Hypodermic Needle 16G",
-        total_emission: 0.205,
+        total_emission: 0.178 + 0.00127 + 0.0005 * 32.5 * 1.58 + 0.000505,
         transportation_emissions: 0.178,
         production_emissions: 0.00127,
         packaging_emissions: 0.0005 * 32.5 * 1.58,
@@ -166,7 +166,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "8-2",
         title: "Hypodermic Needle 21G",
-        total_emission: 0.203, // temp data
+        total_emission: 0.178 + 0.000309 + 0.0005 * 31.5 * 1.58 + 0.000124,
         transportation_emissions: 0.178,
         production_emissions: 0.000309,
         packaging_emissions:  0.0005 * 31.5 * 1.58,
@@ -175,7 +175,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
       {
         id: "8-3",
         title: "Hypodermic Needle 23G",
-        total_emission: 0.2, // temp data
+        total_emission: 0.178 + 0.000149 + 0.0005 * 27.5 * 1.58 + 0.000119,
         transportation_emissions: 0.178,
         production_emissions: 0.000149,
         packaging_emissions:  0.0005 * 27.5 * 1.58,
@@ -187,7 +187,7 @@ export const DATA: (ItemData | MultiSizeItem)[] = [
     id: "9",
     picture: require("../assets/pictures/surgical_mask.png"),
     title: "Surgical Mask",
-    total_emission: 2.249,
+    total_emission: 0.16 + 2.15 + 0.041 + 0.005,
     transportation_emissions: 0.16,
     production_emissions: 2.15,
     packaging_emissions: 0.041,

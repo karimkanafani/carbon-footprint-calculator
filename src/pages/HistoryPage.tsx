@@ -11,10 +11,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Calendar } from 'react-native-calendars';
+import {PieChart} from "react-native-chart-kit";
 
 interface IProcedure {
   name: string;
   emission: number;
+  transportation: number;
+  production: number;
+  packaging: number;
+  disposal: number;
   date: string;
 }
 
@@ -35,6 +40,56 @@ const HistoryPage = () => {
   const [savedProcedures, setSavedProcedures] = useState<IProcedure[]>([]);
   const [markedDates, setMarkedDates] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
+  const [emissionBreakdown, setEmissionBreakdown] = useState({
+    transportation_emissions: 0,
+    production_emissions: 0,
+    packaging_emissions: 0,
+    disposal_emissions: 0,
+  });
+  const [emissionDay, setEmissionDay] = useState(0);
+
+  const data = [
+    {
+      name: "Transportation",
+      emissions: parseFloat(emissionBreakdown.transportation_emissions.toFixed(3)),
+      color: "blue",
+      legendFontColor: "#353535FF",
+      legendFontSize: 15
+    },
+    {
+      name: "Production",
+      emissions: parseFloat(emissionBreakdown.production_emissions.toFixed(3)),
+      color: "lightblue",
+      legendFontColor: "#353535FF",
+      legendFontSize: 15
+    },
+    {
+      name: "Packaging",
+      emissions: parseFloat(emissionBreakdown.packaging_emissions.toFixed(3)),
+      color: "green",
+      legendFontColor: "#353535FF",
+      legendFontSize: 15
+    },
+    {
+      name: "Disposal",
+      emissions: parseFloat(emissionBreakdown.disposal_emissions.toFixed(3)),
+      color: "lightgreen",
+      legendFontColor: "#353535",
+      legendFontSize: 15
+    },
+
+  ];
+
+  const chartConfig = {
+    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#08130D",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false // optional
+  };
 
   useEffect(() => {
     if (isFocused) {
@@ -47,6 +102,10 @@ const HistoryPage = () => {
             procedures.push({
               name: keys[i],
               emission: item.totalEmission,
+              transportation: item.transportationEmission,
+              disposal: item.disposalEmission,
+              packaging: item.packagingEmission,
+              production: item.productionEmission,
               date: formatDate(new Date())
             });
           })
@@ -88,6 +147,8 @@ const HistoryPage = () => {
     return grouped;
   }
 
+  const carEmissionsEquivalent = parseFloat((5.57413600892 * (emissionDay)).toFixed(3))
+
   return (
     <LinearGradient colors={["lightblue", "white"]} style={styles.container}>
       <Modal
@@ -100,6 +161,19 @@ const HistoryPage = () => {
       >
         <View style={styles.fullScreenCentered}>
           <View style={styles.modalView}>
+            <PieChart
+                data={data}
+                width={width - 30}
+                height={200}
+                chartConfig={chartConfig}
+                accessor={"emissions"}
+                backgroundColor={"#e4feeb"}
+                paddingLeft={"-20"}
+                center={[20, 5]}
+                style={{ borderRadius: 20, }}
+            />
+            <Text>Total Emission {emissionDay} kg CO2e</Text>
+            <Text>{carEmissionsEquivalent} km in a car!</Text>
             <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
               <Text>Close</Text>
             </TouchableOpacity>
@@ -125,8 +199,32 @@ const HistoryPage = () => {
         markedDates={markedDates}
         onDayPress={day => {
           const grouped = groupProceduresByDate(savedProcedures);
-          console.log(grouped[day.dateString]); // This will log all procedures for the selected date
-          setModalVisible(true);
+          if(grouped[day.dateString] != undefined){
+            const totalDisposal = grouped[day.dateString].reduce((total, procedure) => {
+              return total + procedure.disposal;
+            }, 0);
+            const totalEmission = grouped[day.dateString].reduce((total, procedure) => {
+              return total + procedure.emission;
+            }, 0);
+            const totalPackaging = grouped[day.dateString].reduce((total, procedure) => {
+              return total + procedure.packaging;
+            }, 0);
+            const totalTransportation = grouped[day.dateString].reduce((total, procedure) => {
+              return total + procedure.transportation;
+            }, 0);
+            const totalProduction = grouped[day.dateString].reduce((total, procedure) => {
+              return total + procedure.production;
+            }, 0);
+            let dayEmission = {
+              transportation_emissions: totalTransportation,
+              production_emissions: totalProduction,
+              packaging_emissions: totalPackaging,
+              disposal_emissions: totalDisposal,
+            };
+            setEmissionBreakdown(dayEmission);
+            setEmissionDay(totalEmission);
+            setModalVisible(true);
+          }
         }}
       />
 
@@ -177,6 +275,7 @@ const styles = StyleSheet.create({
   },
   calendar: {
     marginBottom: 100,
+    borderRadius: 10
   },
   fullScreenCentered: {
     width: width,
@@ -189,7 +288,7 @@ const styles = StyleSheet.create({
     left: 0,
   },
   modalView: {
-    width: '90%',
+    width: "95%",
     backgroundColor: "white",
     borderRadius: 20,
     padding: 20,

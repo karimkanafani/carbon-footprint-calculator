@@ -25,7 +25,7 @@ const AIPage = () => {
 
           {/* Caution Banner */}
           <View style={styles.cautionBanner}>
-            <Text style={styles.cautionText}>AI page is in production and incomplete</Text>
+            <Text style={styles.cautionText}>AI functionality coming soon</Text>
           </View>
 
           {/* Your main content goes here */}

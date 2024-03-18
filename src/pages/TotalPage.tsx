@@ -158,7 +158,45 @@ const TotalPage = ({ route }) => {
         }
         return total;
       }, 0);
-      const itemsInfoWithTotalEmission = {...itemsInfo, totalEmission: parseFloat(totalEmission.toFixed(3))}
+      const productionEmission = Object.values(itemsInfo)
+      .filter((selectedItem) => selectedItem !== undefined)
+      .reduce((total, selectedItem) => {
+        if (selectedItem) {
+          return total + selectedItem.count * selectedItem.item.production_emissions;
+        }
+        return total;
+      }, 0);
+      const packagingEmission = Object.values(itemsInfo)
+      .filter((selectedItem) => selectedItem !== undefined)
+      .reduce((total, selectedItem) => {
+        if (selectedItem) {
+          return total + selectedItem.count * selectedItem.item.packaging_emissions;
+        }
+        return total;
+      }, 0);
+      const transportationEmission = Object.values(itemsInfo)
+      .filter((selectedItem) => selectedItem !== undefined)
+      .reduce((total, selectedItem) => {
+        if (selectedItem) {
+          return total + selectedItem.count * selectedItem.item.transportation_emissions;
+        }
+        return total;
+      }, 0);
+      const disposalEmission = Object.values(itemsInfo)
+      .filter((selectedItem) => selectedItem !== undefined)
+      .reduce((total, selectedItem) => {
+        if (selectedItem) {
+          return total + selectedItem.count * selectedItem.item.disposal_emissions;
+        }
+        return total;
+      }, 0);
+      const itemsInfoWithTotalEmission = {...itemsInfo,
+        totalEmission: parseFloat(totalEmission.toFixed(3)),
+        transportationEmission: parseFloat(transportationEmission.toFixed(3)),
+        disposalEmission: parseFloat(disposalEmission.toFixed(3)),
+        packagingEmission: parseFloat(packagingEmission.toFixed(3)),
+        productionEmission: parseFloat(productionEmission.toFixed(3)),
+      }
       const jsonItemsInfo = JSON.stringify(itemsInfoWithTotalEmission);
       await AsyncStorage.setItem(procedureName, jsonItemsInfo);
     } catch (e) {
