@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ITAG GHG Calculator",
-    "slug": "CarbonFootprintCalculator",
+    "slug": "carbon-footprint",
     "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./src/assets/app_logo_3.png",
@@ -31,8 +31,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "2dd7f053-549b-4421-81a5-61d284a6b5cf"
+        "projectId": "2b675796-7140-4870-a7b2-c5e91d575dd1"
       }
-    }
+    },
+    "owner": "itag"
   }
 }
