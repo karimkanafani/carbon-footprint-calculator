@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image, Modal,
-  Dimensions
+  Dimensions, Linking
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import MedicalItem from "../components/MedicalItem";
@@ -281,6 +281,7 @@ const SelectionPage = ({ navigation }) => {
             <View style={styles.modalView}>
               {/* Modal Content */}
               <Text style={{ fontSize: 18, marginBottom: 10 }}>Please remember to change your mask every 2 hours.</Text>
+              <Text style={{color: 'blue'}}  onPress={() => Linking.openURL('https://itag.gitbook.io/privacy-policy')}>Privacy Policy</Text>
               <TouchableOpacity
                 onPress={() => setInfoModalVisible(false)}
                 style={styles.closeButton}
