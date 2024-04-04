@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.itag.CarbonFootprintCalculator",
+      "bundleIdentifier": "com.helloman970.CarbonFootprintCalculator",
       "buildNumber": "3"
     },
     "android": {
@@ -24,7 +24,7 @@
         "foregroundImage": "./src/assets/app_logo_3.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.itag.CarbonFootprintCalculator"
+      "package": "com.helloman970.CarbonFootprintCalculator"
     },
     "web": {
       "favicon": "./src/assets/app_logo_3.png"
