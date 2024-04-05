@@ -2,7 +2,7 @@
   "expo": {
     "name": "ITAG GHG Calculator",
     "slug": "carbon-footprint",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/app_logo_3.png",
     "userInterfaceStyle": "light",
@@ -17,14 +17,15 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.helloman970.CarbonFootprintCalculator",
-      "buildNumber": "3"
+      "buildNumber": "5"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/app_logo_3.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.helloman970.CarbonFootprintCalculator"
+      "package": "com.helloman970.CarbonFootprintCalculator",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./src/assets/app_logo_3.png"

@@ -4316,6 +4316,13 @@ expo-modules-autolinking@>=0.8.1, expo-modules-autolinking@1.5.1:
     find-up "^5.0.0"
     fs-extra "^9.1.0"
 
+expo-modules-core@^1.11.12:
+  version "1.11.12"
+  resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-1.11.12.tgz"
+  integrity sha512-/e8g4kis0pFLer7C0PLyx98AfmztIM6gU9jLkYnB1pU9JAfQf904XEi3bmszO7uoteBQwSL6FLp1m3TePKhDaA==
+  dependencies:
+    invariant "^2.2.4"
+
 expo-modules-core@1.5.13:
   version "1.5.13"
   resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-1.5.13.tgz"
@@ -4333,6 +4340,13 @@ expo-pwa@0.0.127:
     chalk "^4.0.0"
     commander "2.20.0"
     update-check "1.5.3"
+
+expo-splash-screen@~0.20.5:
+  version "0.20.5"
+  resolved "https://registry.npmjs.org/expo-splash-screen/-/expo-splash-screen-0.20.5.tgz"
+  integrity sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==
+  dependencies:
+    "@expo/prebuild-config" "6.2.6"
 
 expo-status-bar@~1.6.0:
   version "1.6.0"

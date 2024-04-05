@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/node_modules/react-native-gradle-plugin" />
     <file type="web" url="file://$PROJECT_DIR$/node_modules/react-native-reanimated/android" />
+    <file type="web" url="file://$PROJECT_DIR$/node_modules/react-native-safe-area-context/android" />
     <file type="web" url="file://$PROJECT_DIR$/node_modules/react-native-svg/android" />
   </component>
   <component name="ProjectRootManager">
